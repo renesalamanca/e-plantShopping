@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
+// Import the useDispatch hook from react-redux
+import { useDispatch } from 'react-redux';
 import CartItem from './CartItem';
-import addItem from './CartSlice';
+import { addItem } from './CartSlice';
 import CartSlice from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({});
+    // Initialize the dispatch function
+    const dispatch = useDispatch();
 
     const plantsArray = [
         {
@@ -257,8 +261,10 @@ function ProductList({ onHomeClick }) {
     };
 
     const handleAddToCart = (product) => {
-        e.preventDefault();
+        //e.preventDefault();
+        console.log(product.name);
         dispatch(addItem(product)); // Dispatch the action to add the product to the cart (Redux action)
+        console.log('Product added:', product.name);
 
         setAddedToCart((prevState) => ({ // Update the local state to reflect that the product has been added
             ...prevState, // Spread the previous state to retain existing entries
