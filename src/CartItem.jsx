@@ -19,9 +19,11 @@ const CartItem = ({ onContinueShopping }) => {
 
         subtotal = cost * quantity;
 
+        //console.log(subtotal);
+
         total += subtotal;
     });
-
+    return total;
   };
 
   const handleContinueShopping = (e) => {
